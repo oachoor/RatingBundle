@@ -1,0 +1,104 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        .rating {
+            font-size: 16px;
+        }
+
+        .rating-wrap {
+            display: inline-block;
+            direction: rtl;
+        }
+
+        .rating input.rating {
+            display: none;
+        }
+
+        .rating div.star {
+            font-family: FontAwesome;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 25px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .rating div.star:hover {
+            cursor: pointer;
+        }
+
+        .rating div.star:before {
+            content: "\f006";
+            padding-right: 5px;
+            color: #999;
+        }
+
+        .rating div.star:hover:before, .rating div.star:hover ~ div.star:before {
+            content: "\f005";
+            color: #e3cf7a;
+        }
+
+        .rating div.star-full {
+            font-family: FontAwesome;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 25px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .rating div.star-full:before {
+            content: "\f005";
+            color: #e3cf7a;
+        }
+
+        .rating div.star-empty {
+            font-family: FontAwesome;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 25px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .rating div.star-empty:before {
+            content: "\f006";
+            color: #999;
+        }
+
+        .rating div.fa-norm {
+            font-size: 1em;
+        }
+
+        .rating div.fa-lg {
+            font-size: 1.33333333em;
+            line-height: 0.75em;
+            vertical-align: -15%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {{ render( controller( 'RatingBundle:Rating:vote', {'contentId' : 7} ) ) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '.star', function (e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+                $('input.rating').val($(this).data('value'));
+                $.post(form.attr('action'), form.serialize(), function(data) {
+                    form.find('.rating-wrap').removeClass('rating-wrap').html(data);
+                })
+                .fail(function(error) {
+                    console.log('error', error);
+                })
+            });
+        });
+    </script>
+{% endblock %}

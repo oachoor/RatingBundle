@@ -1,0 +1,21 @@
+{
+    "name": "oachoor/rating-bundle",
+    "description": "Provides star rating functionality for Symfony3",
+    "keywords": ["", "rating", "voting", "star", "bundle"],
+    "homepage": "https://github.com/oachoor/RatingBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omar Achoor",
+            "email": "oa@contentpepper.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "symfony/framework-bundle": "~3.4"
+    },
+    "autoload": {
+        "psr-4": {"\\RatingBundle\\": ""}
+    },
+    "minimum-stability": "dev"
+}

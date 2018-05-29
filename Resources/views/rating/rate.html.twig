@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+{{ form_widget(form.rating) }}
+{{ form_end(form) }}
+{% if not rating or (rating and not rating.totalVotes) %}
+    No rating yet. Be the first one to vote!
+{% endif %}

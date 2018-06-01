@@ -1,16 +1,16 @@
-# :star: RatingBundle
+# RatingBundle :star:
 
 ### Requirements
 
 * PHP 7.1+
-* MySQL 5.7.8+
+* MySQL 5.7.20+
 * Symfony 3.4+
 
 ### :package: Installation
 
 Install bundle with `Composer` dependency manager first by running the command:
 
-`$ composer require "oachoor/rating-bundle:dev-master"`
+`$ composer require oachoor/rating-bundle`
 
 ### Register the bundle
 

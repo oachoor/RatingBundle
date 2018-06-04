@@ -31,7 +31,7 @@ public function registerBundles()
 
 ### Add routes
 
-```yaml
+``` yaml
 rating:
     resource: '@RatingBundle/Controller'
     type: annotation
@@ -41,7 +41,7 @@ rating:
 
 Entities doens't fully meet your requirements?, then you can create yours based on [Rating](Entity/Rating.php) and [Vote](Entity/Vote.php).
 
-### Resolve abstract Entities with RatingBundle or yours?:
+### Resolve abstract Entities with RatingBundle or AcmeRatingBundle
 
 ``` yaml
 doctrine:
@@ -52,7 +52,7 @@ doctrine:
             Symfony\Component\Security\Core\User\UserInterface: FOS\UserBundle\Model\User # Voter (Optional)
 ```
 
-### Update mapping and database schema
+### Define mapping Bundle
 
 Make sure you have registred the Bundle that holds the Entities as following:
 
@@ -64,6 +64,8 @@ doctrine:
                 mappings:
                     RatingBundle: ~ or AcmeRatingBundle: ~
 ```
+
+### Update database schema
 
 ``` bash
 $ bin/console doctrine:schema:update --force

@@ -62,7 +62,7 @@ class RatingController extends Controller
         $voteRepository = $this->get(VoteRepository::class);
         $ratingRepository = $this->get(RatingRepository::class);
         $rating = $ratingRepository->findOneByContentId($contentId);
-        $ip = $_SERVER['REMOTE_ADDR'] ?? ($_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['HTTP_CLIENT_IP']);
+        $ip = $_SERVER['HTTP_CLIENT_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'];
 
         if ($request->isXmlHttpRequest() && $request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -72,7 +72,7 @@ class RatingController extends Controller
             if (null === $rating) {
                 $rating = $ratingRepository->store($contentId);
             }
-            $this->get(VoteRepository::class)->create($rating, [
+            !$voteRepository->hasVoted($contentId, $ip) && $this->get(VoteRepository::class)->create($rating, [
                 'rating' => $form->get('rating')->getData(),
                 'ip' => $ip # $request->getClientIp()
             ]);

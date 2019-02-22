@@ -14,6 +14,9 @@ use RatingBundle\Model\AbstractVote as BaseVote;
  */
 class Vote extends BaseVote
 {
+    public const IP_TYPE = 'ip';
+    public const COOKIE_TYPE = 'cookie';
+
     /**
      * @var int
      *

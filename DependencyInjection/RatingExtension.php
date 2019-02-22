@@ -21,11 +21,28 @@ class RatingExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        foreach ($config as $key => $value) {
+            $container->setParameter("oa_rating.$key", $value);
+        }
+        
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
         $resources = $container->getParameter('twig.form.resources');
         $resources = array_merge(['RatingBundle:form:rating_widget.html.twig'], $resources);
         $container->setParameter('twig.form.resources', $resources);
+    }
+
+    /**
+     * The extension alias
+     *
+     * @return string
+     */
+    public function getAlias()
+    {
+        return 'oa_rating';
     }
 }

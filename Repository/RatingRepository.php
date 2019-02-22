@@ -32,6 +32,8 @@ final class RatingRepository extends EntityRepository implements Repository
      * @param int $contentId
      *
      * @return Rating
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function store(int $contentId): Rating
     {

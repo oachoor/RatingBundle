@@ -19,6 +19,8 @@ final class VoteRepository extends EntityRepository implements Repository
      * @param array $data
      *
      * @return Vote
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function create(Rating $rating, array $data): Vote
     {
@@ -35,6 +37,8 @@ final class VoteRepository extends EntityRepository implements Repository
     /**
      * @param object $entity
      * @param bool $refresh
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function store($entity, bool $refresh = false)
     {
@@ -53,7 +57,7 @@ final class VoteRepository extends EntityRepository implements Repository
      */
     public function hasVoted(int $contentId, string $ip = null): bool
     {
-        if (null === $ip) {
+        if ('' === (string) trim($ip)) {
             return false;
         }
 
@@ -62,7 +66,7 @@ final class VoteRepository extends EntityRepository implements Repository
         $query = $qb
             ->select('v.id')
             ->innerJoin('v.rating', 'r')
-            ->where($qb->expr()->eq('v.ip', ip2long($ip)))
+            ->where($qb->expr()->eq('v.ip', $qb->expr()->literal(ip2long($ip))))
             ->andWhere($qb->expr()->eq('r.contentId', $contentId))
             ->getQuery();
 

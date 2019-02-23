@@ -84,11 +84,11 @@ class RatingController extends Controller
                     );
                     $response->headers->setCookie($cookie);
                 }
-
                 $this->get(VoteRepository::class)->create($rating, [
                     'rating' => $form->get('rating')->getData(),
                     'ip' => $this->getIp() # $request->getClientIp()
                 ]);
+                $hasVoted = true;
             }
         }
 

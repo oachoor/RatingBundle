@@ -71,6 +71,17 @@ doctrine:
 $ bin/console doctrine:schema:update --force
 ```
 
+### Using voting strategy
+
+There are two strategies for rating, based on IP addresses or cookies. (both? feel free to contribute)
+
+``` yaml
+oa_rating:
+    strategy: cookie (defaul "ip")
+    cookie_name: your_custom_name
+    cookie_lifetime: '+1 year'
+```
+
 ### Usage
 
 To see rating result for a Content (read-only mode), use the following twig code:

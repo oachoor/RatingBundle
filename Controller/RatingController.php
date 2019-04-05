@@ -52,6 +52,11 @@ class RatingController extends Controller
     public function voteAction(Request $request, int $contentId)
     {
         $response = new Response();
+        $response->mustRevalidate();
+        $response->setPrivate();
+        $response->setMaxAge(0);
+        $response->setSharedMaxAge(0);
+
         $form = $this->get('form.factory')
             ->createNamedBuilder('form__rating')
             ->setAction($this->generateUrl('rating_rating_vote', ['contentId' => $contentId]))
@@ -76,10 +81,13 @@ class RatingController extends Controller
             }
 
             if (!$hasVoted) {
-                if ($this->getParameter('oa_rating.strategy') === Vote::COOKIE_TYPE) {
+                if ($this->isCookieBased()) {
+                    $cookieName = $this->getParameter('oa_rating.cookie_name');
+                    $ratedContentIds = (array) json_decode($request->cookies->get($cookieName), true);
+                    $ratedContentIds[] = $rating->getContentId();
                     $cookie = new Cookie(
-                        $this->getParameter('oa_rating.cookie_name'),
-                        $rating->getContentId(),
+                        $cookieName,
+                        json_encode(array_filter(array_unique($ratedContentIds))),
                         strtotime($this->getParameter('oa_rating.cookie_lifetime'))
                     );
                     $response->headers->setCookie($cookie);
@@ -129,8 +137,9 @@ class RatingController extends Controller
      */
     private function hasVoted(Request $request, int $contentId): bool
     {
-        if ($this->getParameter('oa_rating.strategy') === Vote::COOKIE_TYPE) {
-            return $request->cookies->has($this->getParameter('oa_rating.cookie_name'));
+        $cookieName = $this->getParameter('oa_rating.cookie_name');
+        if ($this->isCookieBased() && $request->cookies->has($cookieName)) {
+            return in_array($contentId, (array) json_decode($request->cookies->get($cookieName), true), true);
         }
 
         return $this->get(VoteRepository::class)->hasVoted($contentId, $this->getIp());
@@ -168,5 +177,13 @@ class RatingController extends Controller
     private function getIp()
     {
         return $_SERVER['HTTP_CLIENT_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'];
+    }
+
+    /**
+     * @return bool
+     */
+    private function isCookieBased(): bool
+    {
+        return $this->getParameter('oa_rating.strategy') === Vote::COOKIE_TYPE;
     }
 }

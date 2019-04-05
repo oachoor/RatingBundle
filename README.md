@@ -77,7 +77,7 @@ There are two strategies for rating, based on IP addresses or cookies. (both? fe
 
 ``` yaml
 oa_rating:
-    strategy: cookie (defaul "ip")
+    strategy: cookie (default "ip")
     cookie_name: your_custom_name
     cookie_lifetime: '+1 year'
 ```

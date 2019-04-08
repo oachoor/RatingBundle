@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -58,7 +59,7 @@ class RatingController extends Controller
         $response->setSharedMaxAge(0);
 
         $form = $this->get('form.factory')
-            ->createNamedBuilder('form__rating')
+            ->createNamedBuilder('form__rating', FormType::class, null, ['csrf_protection' => false])
             ->setAction($this->generateUrl('rating_rating_vote', ['contentId' => $contentId]))
             ->setMethod('POST')
             ->add('rating', RatingType::class, [
@@ -83,7 +84,10 @@ class RatingController extends Controller
             if (!$hasVoted) {
                 if ($this->isCookieBased()) {
                     $cookieName = $this->getParameter('oa_rating.cookie_name');
-                    $ratedContentIds = (array) json_decode($request->cookies->get($cookieName), true);
+                    $ratedContentIds = [];
+                    if ($request->cookies->has($cookieName)) {
+                        $ratedContentIds = (array) json_decode($request->cookies->get($cookieName), true);
+                    }
                     $ratedContentIds[] = $rating->getContentId();
                     $cookie = new Cookie(
                         $cookieName,
@@ -138,8 +142,11 @@ class RatingController extends Controller
     private function hasVoted(Request $request, int $contentId): bool
     {
         $cookieName = $this->getParameter('oa_rating.cookie_name');
-        if ($this->isCookieBased() && $request->cookies->has($cookieName)) {
-            return in_array($contentId, (array) json_decode($request->cookies->get($cookieName), true), true);
+        if ($this->isCookieBased()) {
+            if ($request->cookies->has($cookieName)) {
+                return in_array($contentId, (array) json_decode($request->cookies->get($cookieName), true), true);
+            }
+            return false;
         }
 
         return $this->get(VoteRepository::class)->hasVoted($contentId, $this->getIp());

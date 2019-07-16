@@ -1,13 +1,13 @@
 {
     "name": "oachoor/rating-bundle",
-    "description": "Provides star rating functionality for Symfony3",
+    "description": "Provides star rating functionality for Symfony",
     "keywords": ["rating", "voting", "star", "bundle"],
     "homepage": "https://github.com/oachoor/RatingBundle",
     "license": "MIT",
     "authors": [
         {
             "name": "Omar Achoor",
-            "email": "oa@contentpepper.de"
+            "email": "oachoor@gmail.com"
         }
     ],
     "require": {

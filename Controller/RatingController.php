@@ -104,7 +104,7 @@ class RatingController extends Controller
             }
         }
 
-        return $this->render(sprintf('RatingBundle:rating:%s.html.twig', $hasVoted ? 'result' : 'rate'), [
+        return $this->render(sprintf('@Rating/rating/%s.html.twig', $hasVoted ? 'result' : 'rate'), [
             'form' => $form->createView(),
             'max' => (int) AbstractRating::MAX_VALUE,
             'rating' => $ratingRepository->findOneByContentId($contentId)

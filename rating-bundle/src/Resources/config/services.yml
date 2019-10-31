@@ -1,0 +1,24 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    RatingBundle\Controller\:
+        resource: '../../Controller/*'
+        bind:
+            $cookieName: '%oa_rating.cookie_name%'
+            $cookieLifetime: '%oa_rating.cookie_lifetime%'
+            $cookieStrategy: '%oa_rating.strategy%'
+
+    RatingBundle\Repository\:
+        resource: '../../Repository/*'
+
+    RatingBundle\Form\RatingType:
+        tags:
+            - { name: form.type, alias: rating }
+        public: true
+
+    RatingBundle\EventSubscriber\VoteSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber }

@@ -1,0 +1,7 @@
+<div class="rating">
+    {% for i in 1..max %}
+        <div class="{% if i <= rating.value|round %}star-full {% else %}star-empty {% endif %}"></div>
+    {% endfor %}
+    {{ rating.value|round|number_format(2) }}/{{ constant('MAX_VALUE', rating) }}
+    <small><i>({{ rating.totalVotes }} votes) {{ rating.percentageValue|number_format(0) }}%</i></small>
+</div>

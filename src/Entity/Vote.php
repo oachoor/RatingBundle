@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use RatingBundle\Model\AbstractVote as BaseVote;
 
 /**
- * @ORM\Table(name="vote")
+ * @ORM\Table(name="oa_vote")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="RatingBundle\Repository\VoteRepository")
  */

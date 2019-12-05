@@ -26,7 +26,7 @@ rating:
 
 Entities doesn't fully meet your requirements?, then you can create yours based on [Rating](Entity/Rating.php) and [Vote](Entity/Vote.php).
 
-### Resolve abstract Entities with RatingBundle or AcmeRatingBundle
+### Resolve abstract Entities with RatingBundle or your custom ones
 
 ``` yaml
 doctrine:
@@ -34,7 +34,7 @@ doctrine:
         resolve_target_entities:
             RatingBundle\Model\AbstractVote: RatingBundle\Entity\Vote or AcmeRatingBundle\Entity\Vote
             RatingBundle\Model\AbstractRating: RatingBundle\Entity\Rating or AcmeRatingBundle\Entity\Rating
-            Symfony\Component\Security\Core\User\UserInterface: Symfony\Component\Security\Core\User\User # Voter (Optional)
+            Symfony\Component\Security\Core\User\UserInterface: RatingBundle\Entity\User or AcmeRatingBundle\Entity\User
 ```
 
 ### Define mapping Bundle
@@ -67,7 +67,7 @@ oa_rating:
     cookie_lifetime: '+1 year'
 ```
 
-### Templates Customization 
+### Templates customization 
 
 Templates can be overridden in the `<your-project>/templates/bundles/RatingBundle/` directory, the new templates must use the same name and path (relative to `RatingBundle/Resources/views/`) as the original templates.
 

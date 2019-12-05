@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use RatingBundle\Model\AbstractRating as BaseRating;
 
 /**
- * @ORM\Table(name="rating")
+ * @ORM\Table(name="oa_rating")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="RatingBundle\Repository\RatingRepository")
  */

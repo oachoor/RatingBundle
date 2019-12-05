@@ -78,7 +78,7 @@ final class RatingController extends AbstractController
      */
     public function viewAction()
     {
-		return $this->render('RatingBundle:rating/view.html.twig');
+		return $this->render('@RatingBundle/rating/view.html.twig');
     }
 
     /**
@@ -144,7 +144,7 @@ final class RatingController extends AbstractController
             }
         }
 
-        return $this->render(sprintf('RatingBundle:rating/%s.html.twig', $hasVoted ? 'result' : 'rate'), [
+        return $this->render(sprintf('@RatingBundle/rating/%s.html.twig', $hasVoted ? 'result' : 'rate'), [
             'form' => $form->createView(),
             'max' => (int) AbstractRating::MAX_VALUE,
             'rating' => $this->ratingRepository->findOneByContentId($contentId)
@@ -164,7 +164,7 @@ final class RatingController extends AbstractController
             throw new NotFoundHttpException('Rating not found with given Id.');
         }
 
-        return $this->render('RatingBundle:rating/result.html.twig', [
+        return $this->render('@RatingBundle/rating/result.html.twig', [
         	'max' => (int) AbstractRating::MAX_VALUE,
 			'rating' => $rating
 		]);

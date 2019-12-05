@@ -71,7 +71,7 @@ oa_rating:
 
 Templates can be overridden in the `<your-project>/templates/bundles/RatingBundle/` directory, the new templates must use the same name and path (relative to `RatingBundle/Resources/views/`) as the original templates.
 
-To override the `Resources/views/rating/rate.html.twig` template, create this template: `<your-project>/templates/bundles/RatingBundle/rate.html.twig`
+To override the `Resources/views/rating/view.html.twig` template, create this template: `<your-project>/templates/bundles/RatingBundle/rating/view.html.twig`
 
 ### Usage
 

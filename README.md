@@ -1,5 +1,7 @@
 # RatingBundle :star:
 
+This Symfony bundle provides integration of a star rating system.
+
 ### Requirements
 
 * PHP 7.2+
@@ -10,7 +12,7 @@
 
 Install bundle with `Composer` dependency manager first by running the command:
 
-`$ composer require oachoor/rating-bundle`
+`$ composer req oachoor/rating-bundle`
 
 ### Add routes
 
@@ -65,6 +67,12 @@ oa_rating:
     cookie_lifetime: '+1 year'
 ```
 
+### Templates Customization 
+
+Templates can be overridden in the `<your-project>/templates/bundles/RatingBundle/` directory, the new templates must use the same name and path (relative to `RatingBundle/Resources/views/`) as the original templates.
+
+To override the `Resources/views/rating/rate.html.twig` template, create this template: `<your-project>/templates/bundles/RatingBundle/rate.html.twig`
+
 ### Usage
 
 To see rating result for a Content (read-only mode), use the following twig code:
@@ -79,8 +87,6 @@ Rating is based on Content, to enable voting for a Content use the following twi
 {{ render( controller( 'RatingBundle:Rating:vote', {'contentId' : YOUR_CONTENT_ID} ) ) }}
 ```
 
-Voting is based on IP address, meaning that each computer or device can only vote once. 
-
-### Bonus
+### Example
 
 A minimal [Template](Resources/views/rating/view.html.twig) that contains rating-call, javascripts and stylesheets.

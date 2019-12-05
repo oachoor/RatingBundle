@@ -1,0 +1,8 @@
+phpunit.xml
+/vendor
+/bin
+composer.lock
+composer.phar
+.php_cs.cache
+.php_cs
+.phpunit.result.cache

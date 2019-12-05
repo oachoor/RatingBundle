@@ -54,7 +54,7 @@ final class RatingController extends AbstractController
      * @param VoteRepository        $voteRepository
      * @param string                $cookieName
      * @param string                $cookieStrategy
-     * @param int                   $cookieLifetime
+     * @param string                $cookieLifetime
      */
     public function __construct(
         FormFactoryInterface $formFactory,
@@ -62,7 +62,7 @@ final class RatingController extends AbstractController
         VoteRepository $voteRepository,
         string $cookieName,
         string $cookieStrategy,
-        int $cookieLifetime)
+        string $cookieLifetime)
     {
         $this->formFactory = $formFactory;
         $this->ratingRepository = $ratingRepository;

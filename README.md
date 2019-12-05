@@ -90,3 +90,8 @@ Rating is based on Content, to enable voting for a Content use the following twi
 ### Example
 
 A minimal [Template](Resources/views/rating/view.html.twig) that contains rating-call, javascripts and stylesheets.
+
+## Todos
+
+- [ ] Make User dependencies optional.
+- [ ] Write some Unit Tests.

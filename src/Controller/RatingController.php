@@ -8,16 +8,15 @@ use RatingBundle\Form\RatingType;
 use RatingBundle\Model\AbstractRating;
 use Symfony\Component\Form\FormFactory;
 use RatingBundle\Repository\VoteRepository;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use RatingBundle\Repository\RatingRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -73,14 +72,13 @@ final class RatingController extends AbstractController
     }
 
     /**
-     * @Template()
      * @Route("/view", methods={"GET"})
      *
      * @return array|\Symfony\Component\HttpFoundation\Response
      */
     public function viewAction()
     {
-        return [];
+		return $this->render('RatingBundle:rating/view.html.twig');
     }
 
     /**
@@ -146,7 +144,7 @@ final class RatingController extends AbstractController
             }
         }
 
-        return $this->render(sprintf('RatingBundle:rating:%s.html.twig', $hasVoted ? 'result' : 'rate'), [
+        return $this->render(sprintf('RatingBundle:rating/%s.html.twig', $hasVoted ? 'result' : 'rate'), [
             'form' => $form->createView(),
             'max' => (int) AbstractRating::MAX_VALUE,
             'rating' => $this->ratingRepository->findOneByContentId($contentId)
@@ -154,7 +152,6 @@ final class RatingController extends AbstractController
     }
 
     /**
-     * @Template()
      * @Route("/result/{contentId}", requirements={"contentId"="\d+"}, methods={"GET"})
      *
      * @param int $contentId
@@ -167,7 +164,10 @@ final class RatingController extends AbstractController
             throw new NotFoundHttpException('Rating not found with given Id.');
         }
 
-        return ['max' => (int) AbstractRating::MAX_VALUE, 'rating' => $rating];
+        return $this->render('RatingBundle:rating/result.html.twig', [
+        	'max' => (int) AbstractRating::MAX_VALUE,
+			'rating' => $rating
+		]);
     }
 
     /**

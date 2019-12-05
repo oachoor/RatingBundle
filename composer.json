@@ -18,8 +18,11 @@
 	],
 	"require": {
 		"php": ">=7.2",
+		"doctrine/common": "^2.11",
+		"doctrine/orm": "^2.7",
 		"symfony/form": "^4.3 || ^5.0",
 		"symfony/framework-bundle": "^4.3 || ^5.0",
+		"symfony/security-bundle": "^4.3 || ^5.0",
 		"symfony/validator": "^4.3 || ^5.0"
 	},
 	"require-dev": {

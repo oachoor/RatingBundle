@@ -34,7 +34,7 @@ doctrine:
         resolve_target_entities:
             RatingBundle\Model\AbstractVote: RatingBundle\Entity\Vote or AcmeRatingBundle\Entity\Vote
             RatingBundle\Model\AbstractRating: RatingBundle\Entity\Rating or AcmeRatingBundle\Entity\Rating
-            Symfony\Component\Security\Core\User\UserInterface: FOS\UserBundle\Model\User # Voter (Optional)
+            Symfony\Component\Security\Core\User\UserInterface: Symfony\Component\Security\Core\User\User # Voter (Optional)
 ```
 
 ### Define mapping Bundle
@@ -78,13 +78,13 @@ To override the `Resources/views/rating/rate.html.twig` template, create this te
 To see rating result for a Content (read-only mode), use the following twig code:
 
 ``` twig
-{{ render( controller( 'RatingBundle:Rating:result', {'contentId' : YOUR_CONTENT_ID} ) ) }}
+{{ render( controller( 'RatingBundle:Rating:result', {'contentId': yourContentId} ) ) }}
 ```
 
 Rating is based on Content, to enable voting for a Content use the following twig code:
 
 ``` twig
-{{ render( controller( 'RatingBundle:Rating:vote', {'contentId' : YOUR_CONTENT_ID} ) ) }}
+{{ render( controller( 'RatingBundle:Rating:vote', {'contentId': yourContentId} ) ) }}
 ```
 
 ### Example

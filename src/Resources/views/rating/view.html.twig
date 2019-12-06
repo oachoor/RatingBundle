@@ -81,7 +81,7 @@
 {% endblock %}
 
 {% block body %}
-    {{ render( controller( 'RatingBundle:Rating:vote', {'contentId' : 7} ) ) }}
+    {{ render( controller( 'RatingBundle\\Controller\\RatingController::vote', {'contentId' : 7} ) ) }}
 {% endblock %}
 
 {% block javascripts %}

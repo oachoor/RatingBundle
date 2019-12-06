@@ -1,6 +1,9 @@
+{% form_theme form '@Rating/form/rating_widget.html.twig' %}
+
 {{ form_start(form) }}
-{{ form_widget(form.rating) }}
+{{ form_widget(form.rating, { 'attr': { 'value': (rating ? rating.value|round : 0) } }) }}
 {{ form_end(form) }}
+
 {% if not rating or (rating and not rating.totalVotes) %}
-    No rating yet. Be the first one to vote!
+	No rating yet. Be the first one to vote!
 {% endif %}

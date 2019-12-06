@@ -28,10 +28,6 @@ class RatingExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-
-        $resources = $container->getParameter('twig.form.resources');
-        $resources = array_merge(['@Rating/form/rating_widget.html.twig'], $resources);
-        $container->setParameter('twig.form.resources', $resources);
     }
 
     /**

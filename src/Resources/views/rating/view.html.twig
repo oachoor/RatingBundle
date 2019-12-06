@@ -9,7 +9,7 @@
 
         .rating-wrap {
             display: inline-block;
-            direction: rtl;
+            /*direction: rtl;*/
         }
 
         .rating input.rating {
@@ -25,19 +25,26 @@
             position: relative;
         }
 
-        .rating div.star:hover {
-            cursor: pointer;
-        }
-
         .rating div.star:before {
-            content: "\f006";
             padding-right: 5px;
+            content: "\f006";
             color: #999;
         }
 
-        .rating div.star:hover:before, .rating div.star:hover ~ div.star:before {
+        .rating div.star:hover {
+            cursor: pointer;
             content: "\f005";
             color: #e3cf7a;
+        }
+
+        .rating .rating-wrap:hover div.star:before {
+            content: "\f005";
+            color: #e3cf7a;
+        }
+
+        .rating div.star:hover:before, .rating div.star:hover ~ div.star:before {
+            content: "\f006";
+            color: #999;
         }
 
         .rating div.star-full {

@@ -61,8 +61,8 @@ final class RatingController extends AbstractController
         VoteRepository $voteRepository,
         string $cookieName,
         string $cookieStrategy,
-        string $cookieLifetime)
-    {
+        string $cookieLifetime
+    ) {
         $this->formFactory = $formFactory;
         $this->ratingRepository = $ratingRepository;
         $this->voteRepository = $voteRepository;
@@ -78,7 +78,7 @@ final class RatingController extends AbstractController
      */
     public function viewAction()
     {
-		return $this->render('@Rating/rating/view.html.twig');
+        return $this->render('@Rating/rating/view.html.twig');
     }
 
     /**
@@ -165,9 +165,9 @@ final class RatingController extends AbstractController
         }
 
         return $this->render('@Rating/rating/result.html.twig', [
-        	'max' => (int) AbstractRating::MAX_VALUE,
-			'rating' => $rating
-		]);
+            'max' => (int) AbstractRating::MAX_VALUE,
+            'rating' => $rating
+        ]);
     }
 
     /**

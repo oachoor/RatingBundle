@@ -1,53 +1,53 @@
 {
-	"name": "oachoor/rating-bundle",
-	"description": "Provides star rating functionality for Symfony",
-	"keywords": [
-		"rating",
-		"voting",
-		"star",
-		"bundle"
-	],
-	"homepage": "https://github.com/oachoor/RatingBundle",
-	"type": "symfony-bundle",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Omar Achoor",
-			"email": "oachoor@gmail.com"
-		}
-	],
-	"require": {
-		"php": ">=7.2",
-		"doctrine/common": "^2.11",
-		"doctrine/orm": "^2.7",
-		"symfony/form": "^4.3 || ^5.0",
-		"symfony/framework-bundle": "^4.3 || ^5.0",
-		"symfony/security-bundle": "^4.3 || ^5.0",
-		"symfony/validator": "^4.3 || ^5.0"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "^8.4",
-		"symfony/browser-kit": "^4.3 || ^5.0",
-		"symfony/phpunit-bridge": "^4.3 || ^5.0"
-	},
-	"config": {
-		"bin-dir": "bin",
-		"sort-packages": true
-	},
-	"autoload": {
-		"psr-4": {
-			"RatingBundle\\": "src/"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"RatingBundle\\Tests\\": "tests/"
-		}
-	},
-	"suggest": {
-		"symfony/translation": "If you want feedback messages to be translated."
-	},
-	"scripts": {
-		"test": "bin/phpunit --color=always -v --debug"
-	}
+  "name": "oachoor/rating-bundle",
+  "description": "Provides star rating functionality for Symfony",
+  "keywords": [
+    "rating",
+    "voting",
+    "star",
+    "bundle"
+  ],
+  "homepage": "https://github.com/oachoor/RatingBundle",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Omar Achoor",
+      "email": "oachoor@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "doctrine/common": "^2.11",
+    "doctrine/orm": "^2.7",
+    "symfony/form": "^4.3 || ^5.0",
+    "symfony/framework-bundle": "^4.3 || ^5.0",
+    "symfony/security-bundle": "^4.3 || ^5.0",
+    "symfony/validator": "^4.3 || ^5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.4",
+    "symfony/browser-kit": "^4.3 || ^5.0",
+    "symfony/phpunit-bridge": "^4.3 || ^5.0"
+  },
+  "config": {
+    "bin-dir": "bin",
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "RatingBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "RatingBundle\\Tests\\": "tests/"
+    }
+  },
+  "suggest": {
+    "symfony/translation": "If you want feedback messages to be translated."
+  },
+  "scripts": {
+    "test": "bin/phpunit --color=always -v --debug"
+  }
 }

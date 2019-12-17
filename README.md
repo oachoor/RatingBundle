@@ -17,7 +17,7 @@ Install bundle with `Composer` dependency manager first by running the command:
 ### Add routes
 
 ``` yaml
-rating:
+oa_rating:
     resource: '@RatingBundle/Controller'
     type: annotation
 ```
@@ -95,3 +95,4 @@ A minimal [Template](Resources/views/rating/view.html.twig) that contains rating
 
 - [ ] Make User dependencies optional.
 - [ ] Write some Unit Tests.
+- [ ] Add Fixtures.
